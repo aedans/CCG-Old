@@ -1,0 +1,144 @@
+﻿
+############################################################## We have keywords
+
+has keywords: true
+
+############################################################## Keyword mode
+
+keyword mode:
+	name: old
+	description: Old keywords (Banding, Phasing, etc.)
+keyword mode:
+	name: core
+	description: Core set keywords (Flying, Haste, etc.)
+keyword mode:
+	name: expert
+	description: Expert set keywords (Cycling, Vanishing, etc.)
+keyword mode:
+	name: pseudo
+	description: Pseudo keyword / Ability words (Hellbent, Threshold, etc.)
+keyword mode:
+	name: action
+	description: Keyword actions, reminder text at end of line (Scry, Regenerate, etc.)
+keyword mode:
+	is default: true
+	name: custom
+	description: Custom keywords
+
+############################################################## Keyword parameter types
+
+keyword parameter type:
+	name: mana
+	match: [SCTQXYZI0-9WUBRG/|]+
+	refer script:
+		name: normal
+		description: No changes made
+		script: \{{input}\}
+	refer script:
+		name: converted mana cost
+		description: Converts mana to number
+		# "0" left in so users can easily see how to edit script.
+		script: \{cmc({input})\}
+	refer script:
+		name: colored mana cost
+		description: Converts mana to number of colored mana
+		# "0" left in so users can easily see how to edit script.
+		script: \{colored_mana({input})\}
+
+# By pichoro and bunnierein
+keyword parameter type:
+	name: cost
+	match: [ ][SCTQXYZI0-9WUBRG/|]*|[-—][^(\n]*
+	separator before is: [ —-]
+	separator after is: [.]
+	optional: false
+	# note: the separator is part of match
+	refer script:
+		name: normal
+		description: When using mana only costs, doesn't include anything extra in the reminder text
+		script: \{{input}\}
+	refer script:
+		name: add "pay an additional " for mana costs
+		description: When using mana only costs, words the reminder text as "pay an additional <cost>"
+		script: \{for_mana_costs(add:"pay an additional ", {input})\}
+	refer script:
+		name: add "pay " for mana costs
+		description: When using mana only costs, words the reminder text as "pay <cost>"
+		script: \{for_mana_costs(add:"pay ", {input})\}
+	separator script: long_dash()
+
+keyword parameter type:
+	name: number
+	match: [XYZ0-9]+
+	refer script:
+		name: normal
+		description: (1,2,3)
+		script: \{{input}\}
+	refer script:
+		name: as words
+		description: (one, two, three)
+		script: \{english_number({input})\}
+	refer script:
+		name: as words, use "a" for 1
+		description: (a, two, three)
+		script: \{english_number_a({input})\}
+	refer script:
+		name: as words, use "" for 1
+		description: (, two, three)
+		script: \{english_number_multiple({input})\}
+	refer script:
+		name: as ordinal words
+		description: (first, second, third)
+		script: \{english_number_ordinal({input})\}
+
+keyword parameter type:
+	name: action
+	match: [^(:\n]+
+	separator after is: [.]
+	reminder script: alternative_cost()
+
+keyword parameter type:
+	name: name
+	match: [^(.:;\n—]+
+	refer script:
+		name: normal
+		description: No changes made.
+		script: \{{input}\}
+	refer script:
+		name: singular
+		description: Removes plurality from words.
+		script: \{english_singular({input})\}
+	refer script:
+		name: separate words with "and/or"
+		description: Changes spaces to " and/or ". "Elf Warrior" becomes "Elf and/or Warrior".
+		script: \{separate_words(spacer: " and/or ", {input})\}
+	refer script:
+		name: separate words with "or"
+		description: Changes spaces to " or ". "Elf Warrior" becomes "Elf or Warrior".
+		script: \{separate_words(spacer: " or ", {input})\}
+
+keyword parameter type:
+	name: prefix
+	description: Prefix for things like "<something>walk"
+	optional: false
+#	match: [A-Z][a-z, ]*([A-Z][a-z, ]*\xEB00) # commented out because it stopped prefix param from working, version below allows all "walks", including "Dame Judi Denchwalk", doesn't trigger #in middle of sentences, and doesn't trigger in chains of keywords.
+	match: [A-Z][A-Z,a-z’ ]*
+	example: Forest
+
+keyword parameter type:
+	name: a
+	match: [an?]*
+
+############################# All Magic keywords
+# By JrEye and Neko_Asakami, Updated by Pichoro and Buttock1234
+
+keyword:
+	keyword: Lifesteal
+	match: Lifesteal
+	mode: expert
+	reminder: Whenever this card deals damage, you gain that much life.
+keyword:
+	keyword: Aegis
+	match: Aegis
+	mode: expert
+	reminder: While this card is on the battlefield, you cannot be targeted.
