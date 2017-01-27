@@ -8,11 +8,11 @@ import logic.game.Game;
  */
 
 public class ActionFactory {
-    public Action getDamageAction(String target, int damage) {
+    public Action getDamageAction(Target target, int damage) {
         return new Action() {
             @Override
             public void apply(Game game) {
-                ((Permanent) game.getTarget(target)).health -= damage;
+                ((Permanent) target.get(game)).health -= damage;
             }
         };
     }

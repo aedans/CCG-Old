@@ -1,6 +1,7 @@
 package logic.player.externalplayer;
 
 import connection.Connection;
+import logic.action.Target;
 import logic.player.Deck;
 import logic.player.Player;
 import logic.player.PlayerAction;
@@ -33,13 +34,13 @@ public class ExternalPlayer extends Player {
     }
 
     @Override
-    public String requestTarget(ArrayList<String> targets) {
+    public Target requestTarget(ArrayList<String> targets) {
         String string = "t";
         for (String target : targets) {
             string += target;
         }
         connection.out.println(string);
-        return connection.in.next();
+        return Target.fromString(connection.in.next());
     }
 
     private static Deck loadDeck(Connection connection) {

@@ -91,15 +91,6 @@ public abstract class Game implements Runnable {
         throw new RuntimeException("Could not find action \"" + string + "\"");
     }
 
-    public Object getTarget(String s) {
-        switch (s.charAt(0)){
-            case 'b':
-                return players.get(s.charAt(1)-33).board.getBoard().get(s.charAt(1)-33);
-            default:
-                throw new RuntimeException("Could not find target \"" + s + "\"");
-        }
-    }
-
     public ActionFactory getActionFactory() {
         return actionFactory;
     }

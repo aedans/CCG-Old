@@ -10,7 +10,6 @@ import java.util.Scanner;
  * Created by Aedan Smith.
  */
 
-@SuppressWarnings("Duplicates")
 public class Connection {
     private Socket socket;
     private int port;

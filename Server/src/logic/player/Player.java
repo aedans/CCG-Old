@@ -1,5 +1,7 @@
 package logic.player;
 
+import logic.action.Target;
+
 import java.util.ArrayList;
 
 /**
@@ -25,5 +27,5 @@ public abstract class Player {
 
     public abstract PlayerAction nextAction();
 
-    public abstract String requestTarget(ArrayList<String> targets);
+    public abstract Target requestTarget(ArrayList<String> targets);
 }
