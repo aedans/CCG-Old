@@ -40,7 +40,7 @@ public final class CardManager {
                 });
             }
         });
-        cards.put("R_Removal", new CardData() {
+        cards.put("R_Removal_1", new CardData() {
             @Override
             public boolean canCast(Player current, Game game) {
                 for (Player player : game.players) {
