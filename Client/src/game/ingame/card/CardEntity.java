@@ -14,7 +14,7 @@ import game.ingame.Clickable;
  */
 
 public class CardEntity extends GameObject implements Clickable {
-    private static final float FRAME_WIDTH = 113, FRAME_HEIGHT = 256;
+    private static final float FRAME_WIDTH = 114, FRAME_HEIGHT = 256;
     private Component<CardEntity>[] components;
     private Sprite sprite;
     private IsClicked<CardEntity> isClicked = new IsClicked<>(MouseButton.LEFT);
@@ -72,7 +72,12 @@ public class CardEntity extends GameObject implements Clickable {
 
     @Override
     public float getWidth() {
-        return super.getWidth()*(FRAME_WIDTH/FRAME_HEIGHT);
+        return sprite.getWidth();
+    }
+
+    @Override
+    public float getHeight() {
+        return sprite.getHeight();
     }
 
     public Sprite getSprite() {

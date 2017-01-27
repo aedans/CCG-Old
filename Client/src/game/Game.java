@@ -1,6 +1,7 @@
 package game;
 
 import engine.game.StateBasedGame;
+import engine.renderer.Renderer;
 import engine.renderer.resources.Textures;
 import game.ingame.InGameGameState;
 import game.menustates.MainMenuGameState;
@@ -25,6 +26,9 @@ public class Game extends StateBasedGame {
     @Override
     protected void init() throws LWJGLException {
         super.init();
+        Renderer.bColorR = 1;
+        Renderer.bColorB = 1;
+        Renderer.bColorG = 1;
         try {
             //noinspection ConstantConditions
             for (File f : new File("assets/imgs").listFiles()){
