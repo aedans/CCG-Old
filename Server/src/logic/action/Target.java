@@ -12,7 +12,7 @@ public interface Target {
     static Target fromString(String s){
         switch (s.charAt(0)){
             case 'b':
-                return game -> game.players.get(s.charAt(1)-33).board.getBoard().get(s.charAt(1)-33);
+                return game -> game.players.get(s.charAt(1)-33).board.getBoard().get(s.charAt(2)-33);
             default:
                 throw new RuntimeException("Could not find target \"" + s + "\"");
         }
