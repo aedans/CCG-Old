@@ -135,10 +135,20 @@ keyword parameter type:
 keyword:
 	keyword: Lifesteal
 	match: Lifesteal
-	mode: expert
+	mode: core
 	reminder: Whenever this card deals damage, you gain that much life.
 keyword:
 	keyword: Aegis
 	match: Aegis
-	mode: expert
+	mode: core
 	reminder: While this card is on the battlefield, you cannot be targeted.
+keyword:
+	keyword: Shroud
+	match: Shroud <atom-param>mana</atom-param>
+	mode: core
+	reminder: This card costs an extra {param1} to target.
+keyword:
+	keyword: Powersurge
+	match: Powersurge <atom-param>number</atom-param>
+	mode: core
+	reminder: Increase all damage you deal by {param1}.
