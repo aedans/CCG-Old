@@ -24,16 +24,18 @@ public class InGameGameState extends GameState {
 
     @Override
     public void init() throws Exception {
-        this.serverManager = new ServerManager(this);
         this.hand = new Hand();
         this.board = new Board();
         this.endTurnButton = new EndTurnButton();
-
-        this.serverManager.sendDeck("test.deck");
     }
 
     @Override
     public void update() throws Exception {
+        if (serverManager == null){
+            this.serverManager = new ServerManager(this);
+            this.serverManager.sendDeck("test.deck");
+        }
+
         serverManager.update();
         board.update();
         hand.update();

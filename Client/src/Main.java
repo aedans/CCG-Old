@@ -9,7 +9,6 @@ import server.Server;
 public class Main {
     public static void main(String[] args) {
         try {
-            Server.connect("localhost", Integer.parseInt(args[0]));
             new Game().run();
             Server.disconnect();
         } catch (Exception e){
