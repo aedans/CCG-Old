@@ -35,15 +35,13 @@ public class StartServerButton extends Entity implements Renderable, Updateable 
 
     @Override
     public void update() {
-        if (isClicked.test(this)){
+        if (isClicked.test(this)) {
             try {
-                Process process = Runtime.getRuntime().exec("java -jar Server.jar 345 1");
-                Logger.log("Began server");
-                process.waitFor();
+                Runtime.getRuntime().exec("java -jar Server.jar 345 1");
                 Logger.log("Server initialized");
                 Server.connect("localhost", 345);
                 Logger.log("Connected to server");
-            } catch (IOException | InterruptedException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

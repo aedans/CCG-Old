@@ -29,7 +29,7 @@ public class CardEntity extends GameObject implements Clickable {
                 TexturedModel.getTexturedModel(
                         size * FRAME_WIDTH,
                         size * FRAME_HEIGHT,
-                        Textures.getTexture(id + ".jpg")
+                        Textures.getTexture(id + ".bmp")
                 )
         );
     }
