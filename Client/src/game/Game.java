@@ -30,10 +30,6 @@ public class Game extends StateBasedGame {
         Renderer.bColorB = 1;
         Renderer.bColorG = 1;
         try {
-            //noinspection ConstantConditions
-            for (File f : new File("assets/imgs/cards").listFiles()){
-                Textures.loadTexture(f.getName(), ImageIO.read(f));
-            }
             for (File f : new File("assets/imgs/misc").listFiles()){
                 Textures.loadTexture(f.getName(), ImageIO.read(f));
             }

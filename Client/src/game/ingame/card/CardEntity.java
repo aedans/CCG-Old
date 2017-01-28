@@ -9,6 +9,9 @@ import engine.renderer.resources.Textures;
 import engine.sprites.Sprite;
 import game.ingame.Clickable;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+
 /**
  * Created by Aedan Smith.
  */
@@ -24,12 +27,11 @@ public class CardEntity extends GameObject implements Clickable {
         super(x, y, size * FRAME_WIDTH, size * FRAME_HEIGHT);
         this.components = components;
         this.sprite = new Sprite(
-                x,
-                y,
+                x, y,
                 TexturedModel.getTexturedModel(
                         size * FRAME_WIDTH,
                         size * FRAME_HEIGHT,
-                        Textures.getTexture(id + ".bmp")
+                        lazyTexture(id)
                 )
         );
     }
@@ -87,5 +89,19 @@ public class CardEntity extends GameObject implements Clickable {
     @Override
     public boolean isClicked() {
         return isClicked.test(this);
+    }
+
+    private static int lazyTexture(String id) {
+        try {
+            id = id + ".bmp";
+            try {
+                return Textures.loadTexture(id, ImageIO.read(new File("assets/imgs/cards/" + id)));
+            } catch (Exception e){
+                return Textures.getTexture(id);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
     }
 }
