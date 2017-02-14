@@ -1,7 +1,8 @@
-import server.open
-import logic.game.StandardGame
+
+import logic.game.Game
 import logic.player.Player
 import logic.player.externalplayer.ExternalPlayer
+import server.open
 import java.util.*
 
 /**
@@ -15,9 +16,9 @@ fun main(args: Array<String>) {
     for (connection in connections) {
         players.add(ExternalPlayer(connection))
     }
-    val standardGame = StandardGame(players)
-    standardGame.run()
+    val game = Game(players)
 
+    game.run()
     for (connection in connections) {
         connection.close()
     }

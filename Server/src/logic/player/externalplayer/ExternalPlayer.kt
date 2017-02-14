@@ -45,7 +45,7 @@ class ExternalPlayer(private val connection: Connection) : Player(loadDeck(conne
 
 fun loadDeck(connection: Connection): Deck {
     val deck = Deck()
-    for (s in connection.getInput().next().split(",".toRegex()).dropLastWhile(String::isEmpty).toTypedArray()) {
+    for (s in connection.getInput().next().split(commands.getString("DECK_SEPARATOR").toRegex()).dropLastWhile(String::isEmpty).toTypedArray()) {
         deck.add(0, s)
     }
     return deck

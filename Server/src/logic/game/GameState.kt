@@ -4,6 +4,6 @@ package logic.game
  * Created by Aedan Smith.
  */
 
-class GameState {
-
+interface GameState {
+    fun apply(game: Game): GameState
 }

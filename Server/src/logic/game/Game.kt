@@ -2,8 +2,11 @@ package logic.game
 
 import logic.action.Action
 import logic.cards.CardManager
+import logic.game.gamestates.BeginGameState
+import logic.game.gamestates.BeginTurnState
+import logic.game.gamestates.DoTurnState
+import logic.game.gamestates.EndTurnState
 import logic.player.Player
-import logic.player.PlayerAction
 import logic.player.externalplayer.commands
 import java.util.*
 
@@ -11,20 +14,23 @@ import java.util.*
  * Created by Aedan Smith.
  */
 
-abstract class Game(var players: MutableList<Player>) : Runnable {
+class Game(val players: MutableList<Player>) : Runnable {
     var stack = Stack<Action>()
+    var beginGameState = BeginGameState()
+    val beginTurnStates = ArrayList<BeginTurnState>(players.size)
+    val doTurnStates = ArrayList<DoTurnState>(players.size)
+    val endTurnStates = ArrayList<EndTurnState>(players.size)
 
+    init {
+        players.forEach { beginTurnStates.add(BeginTurnState(it)) }
+        players.forEach { doTurnStates.add(DoTurnState(it)) }
+        players.forEach { endTurnStates.add(EndTurnState(it)) }
+    }
+    
     override fun run() {
-        onBegin()
-        val turns = PlayerIterator(players)
-        while (!isOver) {
-            val current = turns.next()
-            onUpkeep(current)
-            resolveStack()
-            doTurn(current)
-            resolveStack()
-            onEndStep(current)
-            resolveStack()
+        var nextState: GameState = beginGameState
+        while (true) {
+            nextState = nextState.apply(this)
         }
     }
 
@@ -42,27 +48,9 @@ abstract class Game(var players: MutableList<Player>) : Runnable {
         }
     }
 
-    protected abstract fun onBegin()
+    fun indexOf(player: Player) = players.indexOf(player)
 
-    protected abstract fun onUpkeep(current: Player)
-
-    protected abstract fun onEndStep(current: Player)
-
-    private val isOver = false
-
-    private fun doTurn(current: Player) {
-        while (true) {
-            resolveStack()
-            val playerAction = current.nextAction()
-            if (playerAction.actionType == PlayerAction.ActionType.END_TURN) {
-                return
-            } else if (playerAction.actionType == PlayerAction.ActionType.DO_ACTION) {
-                get(playerAction.value).apply(this, current)
-            }
-        }
-    }
-
-    private fun get(string: String): GameAction {
+    fun get(string: String): GameAction {
         if (string.startsWith(commands.getString("HAND"))) {
             return object : GameAction {
                 override fun apply(game: Game, current: Player) {
