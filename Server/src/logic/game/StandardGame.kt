@@ -10,7 +10,7 @@ import java.util.function.Consumer
 class StandardGame(players: MutableList<Player>) : Game(players) {
     override fun onBegin() {
         for (i in 0..0) {
-            players.forEach(Consumer<Player> { it.draw() })
+            players.forEach(Consumer(Player::draw))
         }
     }
 

@@ -3,6 +3,7 @@ package logic.cards
 import logic.action.Action
 import logic.game.Game
 import logic.player.Player
+import logic.player.externalplayer.commands
 import java.util.*
 
 /**
@@ -49,7 +50,7 @@ object CardManager {
                 val players = game.players
                 for (i in players.indices) {
                     for (j in 0..players[i].board.board.size - 1) {
-                        targets.add("b" + (i + 33).toChar() + (j + 33).toChar())
+                        targets.add(commands.getString("BOARD") + i + ":" + j)
                     }
                 }
                 game.stack.push(object : Action {

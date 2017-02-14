@@ -1,4 +1,4 @@
-import connection.open
+import server.open
 import logic.game.StandardGame
 import logic.player.Player
 import logic.player.externalplayer.ExternalPlayer

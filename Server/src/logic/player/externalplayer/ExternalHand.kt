@@ -1,7 +1,7 @@
 package logic.player.externalplayer
 
-import connection.Connection
 import logic.player.Hand
+import server.Connection
 import java.util.*
 
 /**
@@ -12,12 +12,12 @@ class ExternalHand(private val connection: Connection) : Hand {
     private val cards = ArrayList<String>()
 
     override fun add(s: String) {
-        connection.getOutput().println(DRAW_CARD + s)
+        connection.getOutput().println(commands.getString("DRAW_CARD") + s)
         cards.add(s)
     }
 
     override fun remove(n: Int): String {
-        connection.getOutput().println(DISCARD_CARD + (n + 33).toChar())
+        connection.getOutput().println(commands.getString("DISCARD_CARD") + n)
         return cards.removeAt(n)
     }
 

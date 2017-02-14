@@ -20,8 +20,8 @@ public class ServerManager {
         this.inGameGameState = inGameGameState;
 
         new Thread(() -> Server.in.forEachRemaining(s -> {
-            actionStack.add(0, Actions.get(s));
             Logger.log("Received message \"" + s + "\"");
+            actionStack.add(0, Actions.get(s));
         })).start();
     }
 

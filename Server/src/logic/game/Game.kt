@@ -4,6 +4,7 @@ import logic.action.Action
 import logic.cards.CardManager
 import logic.player.Player
 import logic.player.PlayerAction
+import logic.player.externalplayer.commands
 import java.util.*
 
 /**
@@ -53,19 +54,20 @@ abstract class Game(var players: MutableList<Player>) : Runnable {
         while (true) {
             resolveStack()
             val playerAction = current.nextAction()
-            if (playerAction.actionType == PlayerAction.ActionType.END_TURN)
+            if (playerAction.actionType == PlayerAction.ActionType.END_TURN) {
                 return
-            else if (playerAction.actionType == PlayerAction.ActionType.DO_ACTION)
+            } else if (playerAction.actionType == PlayerAction.ActionType.DO_ACTION) {
                 get(playerAction.value).apply(this, current)
+            }
         }
     }
 
     private fun get(string: String): GameAction {
-        if (string[0] == 'h') {
+        if (string.startsWith(commands.getString("HAND"))) {
             return object : GameAction {
                 override fun apply(game: Game, current: Player) {
-                    val index = string[1].toInt() - 33
-                    val cardData = CardManager[current.hand.get(index)]
+                    val index = Integer.parseInt(string.substring(commands.getString("HAND").length))
+                    val cardData = CardManager[current.hand[index]]
                     if (cardData.canCast(current, game)) {
                         current.hand.remove(index)
                         cardData.onCast(current, game)

@@ -2,6 +2,7 @@ package logic.action
 
 import logic.cards.Permanent
 import logic.game.Game
+import logic.player.externalplayer.commands
 
 /**
  * Created by Aedan Smith.
@@ -12,11 +13,16 @@ interface Target {
 }
 
 fun targetFromString(s: String): Target {
-    when (s[0]) {
-        'b' -> return object : Target {
+    if (s.startsWith(commands.getString("BOARD"))){
+        return object : Target {
+            val l = s.substring(commands.getString("BOARD").length)
+            val playerIndex = l.substring(0, l.indexOf(':')).toInt()
+            val boardIndex = l.substring(l.indexOf(':')+1).toInt()
+
             override fun get(game: Game): Permanent {
-                return game.players[s[1].toInt() - 33].board.board[s[2].toInt() - 33]
+                return game.players[playerIndex].board.board[boardIndex]
             }
-        } else -> throw RuntimeException("Could not find target \"" + s + "\"")
+        }
     }
+    throw RuntimeException("Could not find target \"" + s + "\"")
 }

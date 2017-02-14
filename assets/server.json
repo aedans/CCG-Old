@@ -1,0 +1,13 @@
+{
+  "REQUEST_ACTION":"request_action",
+  "REQUEST_TARGET":"request_target:",
+  "TARGET_SEPARATOR":";",
+  "END_TURN":"end_turn",
+  "DO_ACTION":"do_action:",
+  "DRAW_CARD":"draw:",
+  "DISCARD_CARD":"discard:",
+  "PLAY_CARD":"play:",
+  "KILL_CARD":"kill:",
+  "HAND":"hand:",
+  "BOARD":"board:"
+}
