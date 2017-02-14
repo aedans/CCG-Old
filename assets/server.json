@@ -9,6 +9,12 @@
   "DISCARD_CARD":"discard:",
   "PLAY_CARD":"play:",
   "KILL_CARD":"kill:",
+  "SET_MANA_U":"set_mana_u:",
+  "SET_MANA_B":"set_mana_b:",
+  "SET_MANA_R":"set_mana_r:",
+  "SET_MANA_G":"set_mana_g:",
+  "SET_MANA_AMOUNT":"set_mana_amount:",
+  "SET_MANA_CURRENT":"set_mana_current:",
   "HAND":"hand:",
   "BOARD":"board:"
 }

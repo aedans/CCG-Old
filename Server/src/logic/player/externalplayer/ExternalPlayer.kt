@@ -19,7 +19,8 @@ val commands: JSONObject by lazy {
     JSON.parseObject(FileReader("assets/server.json").readText())!!
 }
 
-class ExternalPlayer(private val connection: Connection) : Player(loadDeck(connection), ExternalHand(connection), ExternalBoard(connection)) {
+class ExternalPlayer(private val connection: Connection) :
+        Player(loadDeck(connection), ExternalHand(connection), ExternalBoard(connection), ExternalMana(connection)) {
     override fun nextAction(): PlayerAction {
         connection.getOutput().println(commands.getString("REQUEST_ACTION"))
         val s = connection.getInput().next()

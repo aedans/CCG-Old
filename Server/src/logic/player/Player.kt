@@ -7,7 +7,9 @@ import java.util.*
  * Created by Aedan Smith.
  */
 
-abstract class Player(var deck: Deck, var hand: Hand, var board: Board) {
+abstract class Player(var deck: Deck, var hand: Hand, var board: Board, val mana: Mana) {
+    var playedEnergyForTurn = false
+
     fun draw() {
         if (!deck.isEmpty()) {
             hand.add(deck.pop())

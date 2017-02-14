@@ -8,6 +8,6 @@ import logic.player.Player
  */
 
 interface CardData {
-    fun canCast(current: Player, game: Game): Boolean
-    fun onCast(current: Player, game: Game)
+    fun canCast(caster: Player, game: Game): Boolean
+    fun onCast(caster: Player, game: Game)
 }

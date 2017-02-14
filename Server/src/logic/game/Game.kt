@@ -16,7 +16,7 @@ import java.util.*
 
 class Game(val players: MutableList<Player>) : Runnable {
     var stack = Stack<Action>()
-    var beginGameState = BeginGameState()
+    val beginGameState = BeginGameState()
     val beginTurnStates = ArrayList<BeginTurnState>(players.size)
     val doTurnStates = ArrayList<DoTurnState>(players.size)
     val endTurnStates = ArrayList<EndTurnState>(players.size)
