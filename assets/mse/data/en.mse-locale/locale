@@ -190,7 +190,7 @@ help:
 	style tab:			Change the style of cards
 	keywords tab:		Define extra keywords for this set
 	stats tab:			Show statistics about the cards in the set
-	random pack tab:	Try how the set works out in practice by generating random booster packs.
+	random pack tab:	Try how the set works output in practice by generating random booster packs.
 	console tab:		Shows error messages and allows executing script commands.
 	
 	help:
@@ -737,7 +737,7 @@ error:
 		Error while parsing file: '%s'
 		%s
 	package not found:			Package not found: '%s'
-	package out of date:		The package '%s' (version %s) is out of date, version %s is required.
+	package output of date:		The package '%s' (version %s) is output of date, version %s is required.
 	package too new:			The package '%s' (version %s) is not compatible with version %s, required by '%s'
 	unable to open output file:	Error while saving, unable to open output file
 	unable to store file:		Error while saving, unable to store file
