@@ -8,10 +8,12 @@ import engine.renderer.resources.Textures;
 import engine.sprites.Sprite;
 import engine.utils.Logger;
 import engine.utils.Updateable;
+import game.ingame.server.Server;
 import org.lwjgl.util.Renderable;
-import server.Server;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Created by Aedan Smith.
@@ -37,7 +39,11 @@ public class StartServerButton extends Entity implements Renderable, Updateable 
     public void update() {
         if (isClicked.test(this)) {
             try {
-                Runtime.getRuntime().exec("java -jar Server.jar 345 1");
+                Process process = Runtime.getRuntime().exec("java -jar Server.jar 345 1");
+                new Thread(() -> new BufferedReader(new InputStreamReader(process.getInputStream())).lines()
+                        .forEach(s -> Logger.log("(Server) " + s))).start();
+                new Thread(() -> new BufferedReader(new InputStreamReader(process.getErrorStream())).lines()
+                        .forEach(s -> Logger.log("(Server) " + s))).start();
                 Logger.log("Server initialized");
                 Server.connect("localhost", 345);
                 Logger.log("Connected to server");

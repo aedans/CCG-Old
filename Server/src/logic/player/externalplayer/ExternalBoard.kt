@@ -1,8 +1,6 @@
 package logic.player.externalplayer
 
 import connection.Connection
-import connection.KILL_CARD
-import connection.PLAY_CARD
 import logic.cards.Permanent
 import logic.player.Board
 import java.util.*

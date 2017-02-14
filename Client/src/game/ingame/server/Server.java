@@ -1,4 +1,4 @@
-package server;
+package game.ingame.server;
 
 import engine.utils.Logger;
 

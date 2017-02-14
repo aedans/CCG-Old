@@ -7,7 +7,7 @@ import game.ingame.card.CardMouseoverComponent;
 import game.ingame.hand.Hand;
 import javafx.util.Pair;
 import org.lwjgl.input.Mouse;
-import server.ServerManager;
+import game.ingame.server.ServerManager;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,6 @@
 package logic.player.externalplayer
 
 import connection.Connection
-import connection.DISCARD_CARD
-import connection.DRAW_CARD
 import logic.player.Hand
 import java.util.*
 

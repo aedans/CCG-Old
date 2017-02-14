@@ -2,7 +2,7 @@ This is the official readme file for lwjgl.
 
 Unless otherwise stated, all files distributed or in SVN are covered by 
 the license as stated in the LICENSE file. If you have not received this
-file, please download it from the cvs server.
+file, please download it from the cvs game.ingame.server.
 
 To run some of the included tests:
  Extract the archive, and cd into directory

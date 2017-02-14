@@ -1,6 +1,7 @@
 package logic.player
 
 import logic.cards.Permanent
+import java.util.*
 
 /**
  * Created by Aedan Smith.
@@ -11,9 +12,17 @@ interface Board {
 
     fun remove(n: Int): String
 
-    val board: MutableList<Permanent>
+    val board: List<Permanent>
 
     fun applyStateBasedActions() {
-        board.removeAll { it.health <= 0 }
+        val toRemove = ArrayList<Permanent>()
+        for (permanent in board) {
+            if (permanent.health <= 0) {
+                toRemove.add(permanent)
+            }
+        }
+        for (permanent in toRemove) {
+            remove(board.indexOf(permanent))
+        }
     }
 }

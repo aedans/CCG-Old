@@ -1,6 +1,6 @@
 import engine.utils.Logger;
 import game.Game;
-import server.Server;
+import game.ingame.server.Server;
 
 /**
  * Created by Aedan Smith.
