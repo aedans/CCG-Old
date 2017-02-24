@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Class-Path: assets/fastjson-1.2.20.jar
+Class-Path: assets/fastjson-1.2.24.jar
 Main-Class: MainKt
 

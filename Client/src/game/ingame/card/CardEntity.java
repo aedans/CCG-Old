@@ -95,7 +95,7 @@ public class CardEntity extends GameObject implements Clickable {
         try {
             id = id + ".bmp";
             try {
-                return Textures.loadTexture(id, ImageIO.read(new File("assets/imgs/cards/" + id)));
+                return Textures.loadTexture(id, ImageIO.read(new File("Client/assets/imgs/cards/" + id)));
             } catch (Exception e){
                 return Textures.getTexture(id);
             }

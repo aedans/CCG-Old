@@ -1,0 +1,50 @@
+This is the official readme file for lwjgl.
+
+Unless otherwise stated, all files distributed or in SVN are covered by 
+the license as stated in the LICENSE file. If you have not received this
+file, please download it from the cvs game.ingame.server.
+
+To run some of the included tests:
+ Extract the archive, and cd into directory
+ (please substitute ; and \ according to platform)
+
+  java -cp .;res;jar\lwjgl.jar;jar\lwjgl_test.jar;jar\lwjgl_util.jar;jar\jinput.jar; -Djava.library.path=native\<windows|linux|macosx|solaris> TEST 
+  (this specifies that the jvm should locate the lwjgl native libs in 'native' directory)
+  
+ where TEST is some of the following: 
+ 
+  org.lwjgl.function.WindowCreationTest
+  org.lwjgl.function.SysTest
+  org.lwjgl.function.DisplayTest
+ 
+  org.lwjgl.function.input.MouseCreationTest
+  org.lwjgl.function.input.MouseTest
+  org.lwjgl.function.input.HWCursorTest
+  org.lwjgl.function.input.KeyboardTest
+  org.lwjgl.function.input.TestControllers
+  
+  org.lwjgl.function.openal.ALCTest
+  org.lwjgl.function.openal.OpenALCreationTest
+  org.lwjgl.function.openal.MovingSoundTest
+  org.lwjgl.function.openal.PlayTest
+  org.lwjgl.function.openal.PlayTestMemory
+  org.lwjgl.function.openal.SourceLimitTest
+  org.lwjgl.function.openal.PositionTest
+  org.lwjgl.function.openal.StressTest
+  org.lwjgl.function.openal.SourceLimitTest
+  
+  org.lwjgl.function.opengl.FullScreenWindowedTest
+  org.lwjgl.function.opengl.PbufferTest
+  org.lwjgl.function.opengl.VBOIndexTest
+  org.lwjgl.function.opengl.VBOTest
+  
+  org.lwjgl.function.opengl.pbuffers.PbufferTest
+  
+  org.lwjgl.function.opengl.shaders.ShadersTest
+
+You may also run the Space invaders demo by executing:
+  java -cp .;res;jar\lwjgl.jar;jar\lwjgl_test.jar;jar\lwjgl_util.jar; -Djava.library.path=native\<windows|linux|macosx|solaris> org.lwjgl.examples.spaceinvaders.Game
+  
+Project Webpage: www.lwjgl.org
+Project Forum: forum.lwjgl.org
+Project SVN: https://java-game-lib.svn.sourceforge.net/svnroot/java-game-lib

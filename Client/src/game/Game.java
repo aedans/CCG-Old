@@ -25,12 +25,13 @@ public class Game extends StateBasedGame {
 
     @Override
     protected void init() throws LWJGLException {
+        shaderPath = "Client/assets/shaders/";
         super.init();
         Renderer.bColorR = 1;
         Renderer.bColorB = 1;
         Renderer.bColorG = 1;
         try {
-            for (File f : new File("assets/imgs/misc").listFiles()){
+            for (File f : new File("Client/assets/imgs/misc").listFiles()){
                 Textures.loadTexture(f.getName(), ImageIO.read(f));
             }
         } catch (Exception e) {

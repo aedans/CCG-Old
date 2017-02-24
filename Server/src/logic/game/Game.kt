@@ -26,7 +26,7 @@ class Game(val players: MutableList<Player>) : Runnable {
         players.forEach { doTurnStates.add(DoTurnState(it)) }
         players.forEach { endTurnStates.add(EndTurnState(it)) }
     }
-    
+
     override fun run() {
         var nextState: GameState = beginGameState
         while (true) {
