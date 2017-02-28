@@ -45,6 +45,8 @@ public final class Server {
     }
 
     public static void disconnect() throws IOException {
-        socket.close();
+        if (socket != null) {
+            socket.close();
+        }
     }
 }

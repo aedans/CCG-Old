@@ -72,7 +72,7 @@ object CardManager {
             }
         })
         cards.put("UR_Energy", object : CardData {
-            override fun canCast(caster: Player, game: Game): Boolean = !caster.playedEnergyForTurn
+            override fun canCast(caster: Player, game: Game) = !caster.playedEnergyForTurn
 
             override fun onCast(caster: Player, game: Game) {
                 caster.mana.u++

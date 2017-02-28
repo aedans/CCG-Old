@@ -34,10 +34,10 @@ public final class Actions {
             return inGameGameState -> inGameGameState.getHand().remove(Integer.parseInt(str.substring(DISCARD_CARD.length())));
         }
         if (str.startsWith(PLAY_CARD)) {
-            return inGameGameState -> inGameGameState.getBoard().add(str.substring(PLAY_CARD.length()));
+            return inGameGameState -> inGameGameState.getMyBoard().add(str.substring(PLAY_CARD.length()));
         }
         if (str.startsWith(KILL_CARD)) {
-            return inGameGameState -> inGameGameState.getBoard().remove(Integer.parseInt(str.substring(KILL_CARD.length())));
+            return inGameGameState -> inGameGameState.getMyBoard().remove(Integer.parseInt(str.substring(KILL_CARD.length())));
         }
         if (str.startsWith(SET_MANA_U)) {
             Logger.log("U mana: " + str.substring(SET_MANA_U.length()));

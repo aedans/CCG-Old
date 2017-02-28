@@ -1,6 +1,5 @@
 package server
 
-import java.io.IOException
 import java.io.PrintStream
 import java.net.ServerSocket
 import java.net.Socket
@@ -17,27 +16,22 @@ class Connection(private val port: Int) {
 
     fun connect() {
         println("Connecting to " + port)
+        var connected = false
         Thread {
-            try {
-                socket = ServerSocket(port).accept()
-                input = Scanner(socket!!.getInputStream())
-                output = PrintStream(socket!!.getOutputStream())
-                println("Connected to " + port)
-            } catch (e: IOException) {
-                e.printStackTrace()
+            Thread.sleep(10000)
+            if (!connected) {
+                println("Connection $port timed out")
                 System.exit(-1)
             }
         }.start()
+        socket = ServerSocket(port).accept()
+        connected = true
+        input = Scanner(socket!!.getInputStream())
+        output = PrintStream(socket!!.getOutputStream())
+        println("Connected to " + port)
     }
 
-    fun waitUntilConnected() {
-        while (socket == null) {
-            Thread.sleep(500)
-            print(".")
-        }
-    }
-
-    fun close() = socket!!.close()
+    fun close() = socket?.close()
 
     fun getInput() = input!!
 
@@ -46,15 +40,21 @@ class Connection(private val port: Int) {
 
 fun open(port: Int, num: Int): Array<Connection> {
     val connections = arrayOfNulls<Connection>(num)
-    for (i in connections.indices) {
-        connections[i] = Connection(port + i)
+    try {
+        for (i in connections.indices) {
+            connections[i] = Connection(port + i)
+        }
+        for (connection in connections) {
+            connection!!.connect()
+        }
+        for (i in connections.indices) {
+            connections[i]!!.getOutput().println(i)
+        }
+        println("\nEstablished connections")
+        return connections.requireNoNulls()
+    } catch (e: Throwable) {
+        println("Exception: ${e.message}, closing connections.")
+        connections.forEach { it?.close() }
+        throw e
     }
-    for (connection in connections) {
-        connection!!.connect()
-    }
-    for (connection in connections) {
-        connection!!.waitUntilConnected()
-    }
-    println("\nEstablished connections")
-    return connections.requireNoNulls()
 }

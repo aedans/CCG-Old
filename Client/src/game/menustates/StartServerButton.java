@@ -39,13 +39,13 @@ public class StartServerButton extends Entity implements Renderable, Updateable 
     public void update() {
         if (isClicked.test(this)) {
             try {
-                Process process = Runtime.getRuntime().exec("java -jar Server.jar 345 1");
+                Process process = Runtime.getRuntime().exec("java -jar Server.jar 9000 2");
                 new Thread(() -> new BufferedReader(new InputStreamReader(process.getInputStream())).lines()
                         .forEach(s -> Logger.log("(Server) " + s))).start();
                 new Thread(() -> new BufferedReader(new InputStreamReader(process.getErrorStream())).lines()
                         .forEach(s -> Logger.log("(Server) " + s))).start();
                 Logger.log("Server initialized");
-                Server.connect("localhost", 345);
+                Server.connect("localhost", 9000);
                 Logger.log("Connected to server");
             } catch (IOException e) {
                 e.printStackTrace();

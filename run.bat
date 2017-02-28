@@ -1,0 +1,1 @@
+D:\win\Programs\jdk8\bin\java -Djava.library.path=.\Client\assets\lwjgl-2.9.3\native\windows -Dfile.encoding=windows-1252 -jar D:\win\OneDrive\jg\iCode\CCG\Client.jar

@@ -21,13 +21,15 @@ public class InGameGameState extends GameState {
     public static final int ID = 1;
     private ServerManager serverManager;
     private Hand hand;
-    private Board board;
+    private Board myBoard;
+    private Board enemyBoard;
     private EndTurnButton endTurnButton;
 
     @Override
     public void init() throws Exception {
         this.hand = new Hand();
-        this.board = new Board();
+        this.myBoard = new Board();
+        this.enemyBoard = new Board();
         this.endTurnButton = new EndTurnButton();
     }
 
@@ -35,18 +37,20 @@ public class InGameGameState extends GameState {
     public void update() throws Exception {
         if (serverManager == null){
             this.serverManager = new ServerManager(this);
-            this.serverManager.sendDeck("test.deck");
+            this.serverManager.init("test.deck");
         }
 
         serverManager.update();
-        board.update();
+        myBoard.update();
+        endTurnButton.update();
         hand.update();
         endTurnButton.update();
     }
 
     @Override
     public void render() throws Exception {
-        board.render();
+        myBoard.render();
+        enemyBoard.render();
         hand.render();
         endTurnButton.render();
         CardMouseoverComponent.renderMousedOver();
@@ -56,8 +60,12 @@ public class InGameGameState extends GameState {
         return hand;
     }
 
-    public Board getBoard() {
-        return board;
+    public Board getMyBoard() {
+        return myBoard;
+    }
+
+    public Board getEnemyBoard() {
+        return enemyBoard;
     }
 
     public String getAction() {
@@ -85,7 +93,7 @@ public class InGameGameState extends GameState {
         ArrayList<Clickable> clickables = new ArrayList<>();
         for (String target : targets) {
             if (target.startsWith(Server.commands.getString("BOARD") + "0:")) {
-                clickables.add(board.get(Integer.parseInt(target.substring((Server.commands.getString("BOARD") + "0:").length()))));
+                clickables.add(myBoard.get(Integer.parseInt(target.substring((Server.commands.getString("BOARD") + "0:").length()))));
             }
         }
         while (true){
