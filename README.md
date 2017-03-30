@@ -1,2 +1,4 @@
 # CCG
-A Collectable Card Game.
+A collectable card game.
+
+See https://github.com/aedans/CCG for the current version
